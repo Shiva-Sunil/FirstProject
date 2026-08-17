@@ -7,7 +7,7 @@ from flask import Flask, request, jsonify
 SuperKart_api = Flask('SuperKart Price Predictor')
 
 #Load the trained Model 
-model = joblib.load('deployment_files_backend/model.joblib')
+model = joblib.load('model.joblib')
 
 #Get Request
 @SuperKart_api.get('/')
