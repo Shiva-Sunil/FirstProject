@@ -3,6 +3,10 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import joblib
+import requests
+
+#Base URL
+Backend_URL = 'http://backend:7860'
 
 #Load Trained Model
 
@@ -50,8 +54,25 @@ input_date = pd.DataFrame([{
 }])
 
 #Predict Button
-if st.button('Predict'):
-  prediction = model.predict(input_date)
-  st.success(f'The Predicted Sales is {prediction}')
-else:
-  st.write('Try different combination')
+if st.button('Predict',type='primary'):
+  response = requests.post(f'{Backend_URL}/v1/store', json=input_date.to_dict(orient='records')[0])
+  if response.status_code == 200:
+    prediction = response.json()
+    st.success(f'The Predicted Sales is {prediction}')
+  else:
+    st.error('Error in prediction')
+
+st.subheader('Batch_Prediction')
+
+upload_file = st.file_uploader('Upload CSV file for multiple prediction', type=['csv'])
+
+if upload_file is not None:
+  if st.button('Predict Batch',type='primary'):
+    response = requests.post(f'{Backend_URL}/v1/storebatch', files={'file': upload_file})
+    if response.status_code == 200:
+      prediction = response.json()
+      st.success('Prediction Completed')
+      st.write(prediction)
+    else:
+      st.error('Error in prediction')
+  
