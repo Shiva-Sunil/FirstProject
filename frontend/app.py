@@ -45,7 +45,7 @@ input_date = pd.DataFrame([{
     'Product_Sugar_Content': Product_Sugar_Content,
     'Product_Allocated_Area': Product_Allocated_Area,
     'Product_Type': Product_Type,
-    'Product_MRP': Product_MRP
+    'Product_MRP': Product_MRP,
     'Store_Id': Store_Id,
     'Store_Establishment_Year': Store_Establishment_Year,
     'Store_Location_City_Type': Store_Location_City_Type,
