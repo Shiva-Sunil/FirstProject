@@ -8,18 +8,8 @@ import requests
 #Base URL
 Backend_URL = 'http://backend:7860'
 
-#Load Trained Model
-
-@st.cache_resource()
-def load_model():
-    model = joblib.load('/content/deployment_files_backend/model.joblib')
-    return model
-
-model = load_model()
-
 #Streamlit UI desing
 st.title('Product Sales Prediction by SuperKart')
-st.markdown('##')
 st.write('This App helps you predict the Sales of a store for the upcoming quarter')
 
 st.subheader('Enter the details')
