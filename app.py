@@ -8,7 +8,7 @@ import joblib
 
 @st.cache_resource()
 def load_model():
-    model = joblib.load('/content/deployment_files/model.joblib')
+    model = joblib.load('/content/deployment_files_backend/model.joblib')
     return model
 
 model = load_model()
